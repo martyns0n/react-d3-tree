@@ -34,14 +34,21 @@ export default class Node extends React.Component {
 
   setTransform(nodeData, orientation, shouldTranslateToOrigin = false) {
     const { x, y, parent } = nodeData;
+
     if (shouldTranslateToOrigin) {
       const hasParent = typeof parent === 'object';
       const originX = hasParent ? parent.x : 0;
       const originY = hasParent ? parent.y : 0;
+
       return orientation === 'horizontal'
         ? `translate(${originY},${originX})`
         : `translate(${originX},${originY})`;
     }
+
+    if (nodeData.depth === 4 && parent.type === 0) {
+      return `translate(${parent.y},${y})`;
+    }
+
     return orientation === 'horizontal' ? `translate(${y},${x})` : `translate(${x},${y})`;
   }
 
