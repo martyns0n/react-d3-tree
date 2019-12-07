@@ -35,3 +35,6 @@ playground
 
 # ignore Webpack stats output
 stats.json
+
+react-d3-tree.js
+react-d3-tree.js.map
