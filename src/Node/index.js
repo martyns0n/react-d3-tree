@@ -46,7 +46,7 @@ export default class Node extends React.Component {
     }
 
     if (nodeData.depth === 4 && parent.type === 0) {
-      return `translate(${parent.y},${y})`;
+      return `translate(${parent.x},${y})`;
     }
 
     return orientation === 'horizontal' ? `translate(${y},${x})` : `translate(${x},${y})`;
