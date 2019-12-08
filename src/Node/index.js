@@ -46,8 +46,8 @@ export default class Node extends React.Component {
     }
 
     if (nodeData.type === 5 && parent.type === 0) {
-      const deltaX = Math.abs(parent.x - x);
-      const newY = y + deltaX;
+      const indexMultiplier = parent.children.findIndex(child => child.name === nodeData.name) + 1;
+      const newY = y + 140 * indexMultiplier;
 
       return `translate(${parent.x},${newY})`;
     }
