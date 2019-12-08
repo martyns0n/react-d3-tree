@@ -45,7 +45,7 @@ export default class Node extends React.Component {
         : `translate(${originX},${originY})`;
     }
 
-    if (nodeData.depth === 4 && parent.type === 0) {
+    if (nodeData.type === 5 && parent.type === 0) {
       const newY = y + x / 2;
 
       return `translate(${parent.x},${newY})`;
