@@ -46,7 +46,8 @@ export default class Node extends React.Component {
     }
 
     if (nodeData.type === 5 && parent.type === 0) {
-      const newY = y + x / 2;
+      const deltaX = Math.abs(parent.x - x);
+      const newY = y + deltaX;
 
       return `translate(${parent.x},${newY})`;
     }
