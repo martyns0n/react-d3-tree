@@ -36,6 +36,13 @@ export default class Link extends React.PureComponent {
     const { source, target } = linkData;
     const deltaY = target.y - source.y;
 
+    if (target.type === 5 && source.type === 0) {
+      const indexMultiplier = source.children.findIndex(child => child.name === target.name);
+      const newY = target.y + 140 * indexMultiplier;
+
+      return `M${source.x - 116},${source.y} V${newY} H${target.x + 32}`;
+    }
+
     return orientation === 'horizontal'
       ? `M${source.x},${source.y} V${source.y + deltaY / 2} H${target.x} V${target.y}`
       : `M${source.y},${source.x} H${source.y + deltaY / 2} V${target.x} H${target.y}`;
