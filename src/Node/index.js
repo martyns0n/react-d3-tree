@@ -45,12 +45,12 @@ export default class Node extends React.Component {
         : `translate(${originX},${originY})`;
     }
 
-    if (nodeData.type === 5 && parent.type === 0) {
-      const indexMultiplier = parent.children.findIndex(child => child.name === nodeData.name);
-      const newY = y + 140 * indexMultiplier;
+    // if (nodeData.type === 5 && parent.type === 0) {
+    //   const indexMultiplier = parent.children.findIndex(child => child.name === nodeData.name);
+    //   const newY = y + 140 * indexMultiplier;
 
-      return `translate(${parent.x + 32},${newY})`;
-    }
+    //   return `translate(${parent.x},${newY})`;
+    // }
 
     return orientation === 'horizontal' ? `translate(${y},${x})` : `translate(${x},${y})`;
   }

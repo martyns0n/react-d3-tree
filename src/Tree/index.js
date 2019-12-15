@@ -419,6 +419,7 @@ class Tree extends React.Component {
       initialDepth,
       useCollapseData,
       depthFactor,
+      compact,
       separation,
       nodeSize,
       orientation,
@@ -448,6 +449,20 @@ class Tree extends React.Component {
     if (depthFactor) {
       nodes.forEach(node => {
         node.y = node.depth * depthFactor;
+      });
+    }
+
+    if (compact) {
+      nodes.forEach(node => {
+        const { parent } = node;
+
+        if (node.type === 5 && parent.type === 0) {
+          const { y } = node;
+          const indexMultiplier = parent.children.findIndex(child => child.name === node.name);
+
+          node.y = y + 140 * indexMultiplier;
+          node.x = parent.x;
+        }
       });
     }
 
@@ -573,6 +588,7 @@ Tree.defaultProps = {
   pathFunc: 'diagonal',
   transitionDuration: 500,
   depthFactor: undefined,
+  compact: undefined,
   collapsible: true,
   useCollapseData: false,
   initialDepth: undefined,
@@ -615,6 +631,7 @@ Tree.propTypes = {
   pathFunc: T.oneOfType([T.oneOf(['diagonal', 'elbow', 'straight']), T.func]),
   transitionDuration: T.number,
   depthFactor: T.number,
+  compact: T.bool,
   collapsible: T.bool,
   useCollapseData: T.bool,
   initialDepth: T.number,
